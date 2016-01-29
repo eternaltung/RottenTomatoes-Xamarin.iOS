@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RottenTomatoXamarin", "RottenTomatoXamarin\RottenTomatoXamarin.csproj", "{FD379E23-847F-4652-A18D-BF2DBAFDB746}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Release|iPhone.Build.0 = Release|iPhone
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FD379E23-847F-4652-A18D-BF2DBAFDB746}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
