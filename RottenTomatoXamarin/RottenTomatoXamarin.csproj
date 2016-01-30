@@ -89,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\tomato.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -129,6 +128,7 @@
     <BundleResource Include="Resources\dvd.png" />
     <BundleResource Include="Resources\Search.png" />
     <BundleResource Include="Resources\flixster.png" />
+    <BundleResource Include="Resources\tomato.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
