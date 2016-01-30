@@ -9,7 +9,7 @@ namespace RottenTomatoXamarin.Controller
 	public class MovieTableController : UITableViewSource
 	{
 		private List<Movie> data;
-		NSString cellIdentifier = new NSString("Cell");
+		NSString cellIdentifier = new NSString("CellMovie");
 		UIViewController parent;
 
 		public MovieTableController (List<Movie> movies, UIViewController viewController)
@@ -27,6 +27,7 @@ namespace RottenTomatoXamarin.Controller
 			{
 				cell = new MovieCell();
 			}
+
 			cell.UpdateCell (movie);
 			return cell;
 		}

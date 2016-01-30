@@ -83,9 +83,13 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="MBProgressHUD">
+      <HintPath>..\packages\mbprogresshud.0.9.2.0\lib\Xamarin.iOS\MBProgressHUD.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\tomato.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -106,10 +110,6 @@
     </Compile>
     <Compile Include="Model\MovieModel.cs" />
     <Compile Include="Controller\MovieTableController.cs" />
-    <Compile Include="View\MovieCell.cs" />
-    <Compile Include="View\MovieCell.designer.cs">
-      <DependentUpon>MovieCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controller\MovieViewController.cs" />
     <Compile Include="Controller\MovieViewController.designer.cs">
       <DependentUpon>MovieViewController.cs</DependentUpon>
@@ -118,15 +118,27 @@
     <Compile Include="Controller\DetailViewController.designer.cs">
       <DependentUpon>DetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MovieCell.cs" />
+    <Compile Include="View\MovieCell.designer.cs">
+      <DependentUpon>MovieCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\movie.png" />
     <BundleResource Include="Resources\dvd.png" />
+    <BundleResource Include="Resources\Search.png" />
+    <BundleResource Include="Resources\flixster.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Controller\" />
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="mbprogresshud">
+      <Version>0.9.2.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

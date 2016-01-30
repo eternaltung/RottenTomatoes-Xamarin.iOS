@@ -14,8 +14,24 @@ namespace RottenTomatoXamarin
 	[Register ("MovieCell")]
 	partial class MovieCell
 	{
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel CriticsScoreLabel { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel TitleLabel { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (CriticsScoreLabel != null) {
+				CriticsScoreLabel.Dispose ();
+				CriticsScoreLabel = null;
+			}
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
+			}
 		}
 	}
 }

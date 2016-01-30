@@ -15,11 +15,6 @@ namespace RottenTomatoXamarin
 			
 		}
 
-		public DetailViewController ()
-		{
-
-		}
-
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

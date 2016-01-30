@@ -9,12 +9,13 @@ using RottenTomatoXamarin.Controller;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using CoreGraphics;
+using MBProgressHUD;
 
 namespace RottenTomatoXamarin
 {
 	partial class MovieViewController : UIViewController
 	{
-		string apikey = "dagqdghwaq3e3mxyrp7kmmj5";
+		string apikey = "";
 
 		public MovieViewController (IntPtr handle) : base (handle)
 		{
@@ -24,6 +25,12 @@ namespace RottenTomatoXamarin
 		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			var hud = new MTMBProgressHUD (View) {
+				LabelText = "Loading...",
+				RemoveFromSuperViewOnHide = true
+			};
+			View.AddSubview (hud);
+			hud.Show (true);
 			if (this.TabBarItem.Title == "Movie")
 			{
 				this.TabBarController.Title = "Box Office";
@@ -40,9 +47,9 @@ namespace RottenTomatoXamarin
 			//this.MovieTable = new UITableView (View.Bounds);
 			List<Movie> movies = await GetMovieData ();
 			this.MovieTable.Source = new MovieTableController(movies, this);
-			//movieTable.Source = new MovieTableController(movies);
 
 			this.MovieTable.ReloadData ();
+			hud.Hide (true);
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
