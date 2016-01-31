@@ -121,6 +121,7 @@
     <Compile Include="View\MovieCell.designer.cs">
       <DependentUpon>MovieCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reachability.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

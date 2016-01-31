@@ -24,10 +24,8 @@ namespace RottenTomatoXamarin
 			TitleLabel.Text = movie.title;
 			CriticsScoreLabel.Text = movie.ratings.critics_score.ToString();
 			PosterImg.Image = null;
-			//UIImage img = await LoadImage (movie.posters.thumbnail);
 			PosterImg.Image = await LoadImage (movie.posters.thumbnail);
 			PosterImg.Alpha = 0;
-			//PosterImg.Image = img;
 			UIView.Animate (0.8, () => 
 			{
 					PosterImg.Alpha = 1;

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using CoreGraphics;
 using MBProgressHUD;
+using Reachability;
 
 namespace RottenTomatoXamarin
 {
@@ -25,12 +26,6 @@ namespace RottenTomatoXamarin
 		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			var hud = new MTMBProgressHUD (View) {
-				LabelText = "Loading...",
-				RemoveFromSuperViewOnHide = true
-			};
-			View.AddSubview (hud);
-			hud.Show (true);
 			if (this.TabBarItem.Title == "Movie")
 			{
 				this.TabBarController.Title = "Box Office";
@@ -39,6 +34,21 @@ namespace RottenTomatoXamarin
 			{
 				this.TabBarController.Title = "DVD Top Rentals";
 			}
+
+			Reachability.Reachability.ReachabilityChanged+= Reachability_Reachability_ReachabilityChanged;
+
+			//check network
+			if (Reachability.Reachability.InternetConnectionStatus() == NetworkStatus.NotReachable) {
+				addErrorView ();
+				return;
+			}
+
+			var hud = new MTMBProgressHUD (View) {
+				LabelText = "Loading...",
+				RemoveFromSuperViewOnHide = true
+			};
+			View.AddSubview (hud);
+			hud.Show (true);
 
 			//CGRect rect = new CGRect (0, 0, View.Bounds.Width, View.Bounds.Height);
 			//UITableView movieTable = new UITableView(rect);
@@ -50,7 +60,29 @@ namespace RottenTomatoXamarin
 
 			this.MovieTable.ReloadData ();
 			hud.Hide (true);
-			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		void Reachability_Reachability_ReachabilityChanged (object sender, EventArgs e)
+		{
+			if (Reachability.Reachability.InternetConnectionStatus () == NetworkStatus.NotReachable) {
+				addErrorView ();
+			} 
+			else {
+				this.MovieTable.TableHeaderView = null;
+			}
+		}
+
+		private void addErrorView()
+		{
+			UIView errorView = new UIView (new CGRect (0, 0, View.Bounds.Width, 30)) {
+				BackgroundColor = UIColor.Yellow
+			};
+			UILabel errorLabel = new UILabel (new CGRect (0, 0, View.Bounds.Width, 30)) { 
+				TextAlignment = UITextAlignment.Center,
+				Text = "⚠️      Network error"
+			};
+			errorView.AddSubview (errorLabel);
+			this.MovieTable.TableHeaderView = errorView;
 		}
 
 		public override void DidReceiveMemoryWarning ()
