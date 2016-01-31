@@ -23,17 +23,17 @@ namespace RottenTomatoXamarin
 			
 		}
 
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+			this.TabBarController.Title = this.TabBarItem.Title == "Movie" ? "Box Office" : "DVD Top Rentals";
+		}
+
 		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			if (this.TabBarItem.Title == "Movie")
-			{
-				this.TabBarController.Title = "Box Office";
-			}
-			else
-			{
-				this.TabBarController.Title = "DVD Top Rentals";
-			}
+			string url = this.TabBarItem.Title == "Movie" ? $"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey={apikey}&limit=20" 
+				: $"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey={apikey}&limit=20";
 
 			Reachability.Reachability.ReachabilityChanged+= Reachability_Reachability_ReachabilityChanged;
 
@@ -55,7 +55,7 @@ namespace RottenTomatoXamarin
 			//View.AddSubview (movieTable);
 
 			//this.MovieTable = new UITableView (View.Bounds);
-			List<Movie> movies = await GetMovieData ();
+			List<Movie> movies = await GetMovieData (url);
 			this.MovieTable.Source = new MovieTableController(movies, this);
 
 			this.MovieTable.ReloadData ();
@@ -98,10 +98,10 @@ namespace RottenTomatoXamarin
 		/// Gets the movie data.
 		/// </summary>
 		/// <returns>The movie data.</returns>
-		public async Task<List<Movie>> GetMovieData()
+		public async Task<List<Movie>> GetMovieData(string url)
 		{
 			HttpClient client = new HttpClient();
-			string url = string.Format("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey={0}",apikey);
+
 			string json = await client.GetStringAsync(new Uri(url, UriKind.Absolute));
 			MovieModel model = JsonConvert.DeserializeObject<MovieModel>(json);
 			return model.movies;
