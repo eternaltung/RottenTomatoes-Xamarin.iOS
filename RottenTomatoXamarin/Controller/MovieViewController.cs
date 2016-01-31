@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using CoreGraphics;
 using MBProgressHUD;
 using Reachability;
+using ObjCRuntime;
 
 namespace RottenTomatoXamarin
 {
@@ -32,9 +33,6 @@ namespace RottenTomatoXamarin
 		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			string url = this.TabBarItem.Title == "Movie" ? $"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey={apikey}&limit=20" 
-				: $"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey={apikey}&limit=20";
-
 			Reachability.Reachability.ReachabilityChanged+= Reachability_Reachability_ReachabilityChanged;
 
 			//check network
@@ -42,7 +40,15 @@ namespace RottenTomatoXamarin
 				addErrorView ();
 				return;
 			}
+			AddRefreshControl();
+			await ReloadMovieTable();
+		}
 
+		private async Task ReloadMovieTable()
+		{
+			string url = this.TabBarItem.Title == "Movie" ? $"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey={apikey}&limit=20" 
+				: $"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey={apikey}&limit=20";
+			
 			var hud = new MTMBProgressHUD (View) {
 				LabelText = "Loading...",
 				RemoveFromSuperViewOnHide = true
@@ -50,11 +56,6 @@ namespace RottenTomatoXamarin
 			View.AddSubview (hud);
 			hud.Show (true);
 
-			//CGRect rect = new CGRect (0, 0, View.Bounds.Width, View.Bounds.Height);
-			//UITableView movieTable = new UITableView(rect);
-			//View.AddSubview (movieTable);
-
-			//this.MovieTable = new UITableView (View.Bounds);
 			List<Movie> movies = await GetMovieData (url);
 			this.MovieTable.Source = new MovieTableController(movies, this);
 
@@ -70,6 +71,23 @@ namespace RottenTomatoXamarin
 			else {
 				this.MovieTable.TableHeaderView = null;
 			}
+		}
+
+		private void AddRefreshControl()
+		{
+			UIRefreshControl refreshControl = new UIRefreshControl(){
+				AttributedTitle = new NSAttributedString("pull to refresh")
+			};
+			refreshControl.ValueChanged += RefreshControl_ValueChanged;
+			MovieTable.AddSubview(refreshControl);
+		}
+
+		async void RefreshControl_ValueChanged (object sender, EventArgs e)
+		{
+			(sender as UIRefreshControl).AttributedTitle = new NSAttributedString("loading...");
+			this.MovieTable.Source = null;
+			await ReloadMovieTable();
+			(sender as UIRefreshControl).EndRefreshing();
 		}
 
 		/// <summary>
