@@ -72,6 +72,9 @@ namespace RottenTomatoXamarin
 			}
 		}
 
+		/// <summary>
+		/// Adds the error view.
+		/// </summary>
 		private void addErrorView()
 		{
 			UIView errorView = new UIView (new CGRect (0, 0, View.Bounds.Width, 30)) {
@@ -91,6 +94,10 @@ namespace RottenTomatoXamarin
 			// Release any cached data, images, etc that aren't in use.
 		}
 
+		/// <summary>
+		/// Gets the movie data.
+		/// </summary>
+		/// <returns>The movie data.</returns>
 		public async Task<List<Movie>> GetMovieData()
 		{
 			HttpClient client = new HttpClient();

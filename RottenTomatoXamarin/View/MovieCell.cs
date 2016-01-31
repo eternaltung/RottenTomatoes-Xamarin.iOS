@@ -24,7 +24,7 @@ namespace RottenTomatoXamarin
 			TitleLabel.Text = movie.title;
 			CriticsScoreLabel.Text = movie.ratings.critics_score.ToString();
 			PosterImg.Image = null;
-			PosterImg.Image = await LoadImage (movie.posters.thumbnail);
+			PosterImg.Image = await Utility.LoadImage(movie.posters.thumbnail);
 			PosterImg.Alpha = 0;
 			UIView.Animate (0.8, () => 
 			{
@@ -32,13 +32,6 @@ namespace RottenTomatoXamarin
 			});
 			AudienceLabel.Text = movie.ratings.audience_score.ToString();
 
-		}
-
-		public async Task<UIImage> LoadImage (string imageUrl)
-		{
-			var httpClient = new HttpClient();
-			var contents = await httpClient.GetByteArrayAsync (imageUrl);
-			return UIImage.LoadFromData (NSData.FromArray (contents));
 		}
 
 		public override void SetSelected (bool selected, bool animated)

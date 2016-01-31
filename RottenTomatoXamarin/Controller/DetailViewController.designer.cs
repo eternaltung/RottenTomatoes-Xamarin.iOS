@@ -16,13 +16,29 @@ namespace RottenTomatoXamarin
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel TestLabel { get; set; }
+		UIImageView BackgroundImg { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView DetailTextView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel TitleLabel { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (TestLabel != null) {
-				TestLabel.Dispose ();
-				TestLabel = null;
+			if (BackgroundImg != null) {
+				BackgroundImg.Dispose ();
+				BackgroundImg = null;
+			}
+			if (DetailTextView != null) {
+				DetailTextView.Dispose ();
+				DetailTextView = null;
+			}
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
 			}
 		}
 	}
