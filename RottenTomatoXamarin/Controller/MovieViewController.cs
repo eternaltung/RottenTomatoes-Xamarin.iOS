@@ -56,10 +56,12 @@ namespace RottenTomatoXamarin
 			View.AddSubview (hud);
 			hud.Show (true);
 
-			List<Movie> movies = await GetMovieData (url);
+			List<Movie> movies = await Utility.GetMovieData (url);
 			this.MovieTable.Source = new MovieTableController(movies, this);
 
 			this.MovieTable.ReloadData ();
+			SearchCollectionView searchview = (SearchCollectionView)this.TabBarController.ViewControllers [2];
+			searchview.allData = movies;
 			hud.Hide (true);
 		}
 
@@ -110,19 +112,6 @@ namespace RottenTomatoXamarin
 		{
 			base.DidReceiveMemoryWarning ();
 			// Release any cached data, images, etc that aren't in use.
-		}
-
-		/// <summary>
-		/// Gets the movie data.
-		/// </summary>
-		/// <returns>The movie data.</returns>
-		public async Task<List<Movie>> GetMovieData(string url)
-		{
-			HttpClient client = new HttpClient();
-
-			string json = await client.GetStringAsync(new Uri(url, UriKind.Absolute));
-			MovieModel model = JsonConvert.DeserializeObject<MovieModel>(json);
-			return model.movies;
 		}
 	}
 }

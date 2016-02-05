@@ -18,6 +18,10 @@ namespace RottenTomatoXamarin
 		{
 		}
 
+		/// <summary>
+		/// Updates the cell.
+		/// </summary>
+		/// <param name="movie">Movie.</param>
 		public async void UpdateCell(Movie movie)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Default;

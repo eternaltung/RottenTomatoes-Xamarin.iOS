@@ -97,6 +97,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="View\SearchCollectionCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -106,10 +107,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="DVDViewController.cs" />
-    <Compile Include="DVDViewController.designer.cs">
-      <DependentUpon>DVDViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\MovieModel.cs" />
     <Compile Include="Controller\MovieTableController.cs" />
     <Compile Include="Controller\MovieViewController.cs" />
@@ -126,6 +123,14 @@
     </Compile>
     <Compile Include="Lib\Reachability.cs" />
     <Compile Include="Lib\Utility.cs" />
+    <Compile Include="View\SearchCollectionCell.cs" />
+    <Compile Include="View\SearchCollectionCell.designer.cs">
+      <DependentUpon>SearchCollectionCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\SearchCollectionView.cs" />
+    <Compile Include="Controller\SearchCollectionView.designer.cs">
+      <DependentUpon>SearchCollectionView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

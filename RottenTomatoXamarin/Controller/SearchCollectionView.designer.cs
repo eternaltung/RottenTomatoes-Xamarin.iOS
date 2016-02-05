@@ -11,8 +11,8 @@ using UIKit;
 
 namespace RottenTomatoXamarin
 {
-	[Register ("DVDViewController")]
-	partial class DVDViewController
+	[Register ("SearchCollectionView")]
+	partial class SearchCollectionView
 	{
 		void ReleaseDesignerOutlets ()
 		{
