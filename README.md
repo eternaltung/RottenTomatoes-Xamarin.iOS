@@ -7,5 +7,8 @@ This is a movies app displaying box office and top rental DVDs using the [Rotten
 - Open the project and add your keys at the MovieViewController.cs.
 
 	```csharp	
-	string apikey = "your key";
+	string apikey = "your key";		
 	```
+
+## ScreenShot
+<img src="screenshot.gif" alt="screenshot" style="width: 400px;"/>
