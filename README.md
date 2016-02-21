@@ -11,4 +11,4 @@ This is a movies app displaying box office and top rental DVDs using the [Rotten
 	```
 
 ## ScreenShot
-<img src="screenshot.gif" alt="screenshot" style="width: 400px;"/>
+<img src="screenshot.gif" alt="screenshot" width="350"/>
