@@ -16,7 +16,7 @@ namespace RottenTomatoXamarin.Model
 		public string title { get; set; }
 		public int year { get; set; }
 		public string mpaa_rating { get; set; }
-		public int runtime { get; set; }
+		public int? runtime { get; set; }
 		public string critics_consensus { get; set; }
 		public Release_Dates release_dates { get; set; }
 		public Ratings ratings { get; set; }
